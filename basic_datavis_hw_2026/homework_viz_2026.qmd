@@ -56,8 +56,8 @@ hogwarts <- read_csv("data/hogwarts_2026.csv", show_col_types = FALSE)
 Постройте барплот (столбчатую диаграмму), отражающий распределение числа студентов по курсам обучения. Раскрасьте столбики любым понравившимся цветом: подойдёт и название цвета, и hex-код. Задайте и цвет контура столбиков. Проинтерпретируйте график.
 
 ```{r task-1}
-   #| fig-width: 8
-   #| fig-height: 6
+#| fig-width: 8
+#| fig-height: 6
 
 hogwarts |> 
   mutate(course = factor(course)) |> 
@@ -79,8 +79,8 @@ hogwarts |>
 С помощью аргумента `position` измените график так, чтобы каждый столбец показывал распределение факультета по чистоте крови в долях. Запишите текстом в этом файле, какой вывод можно сделать из графика.
 
 ```{r task-2}
-   #| fig-width: 8
-   #| fig-height: 6
+ #| fig-width: 8
+ #| fig-height: 6
 
 blood_names <- c(
   `half-blood` = "Полукровка",
@@ -128,8 +128,8 @@ hogwarts |>
 Отобразите распределение баллов, заработанных студентами на 3-й неделе обучения, по факультетам. Постарайтесь показать одновременно и форму распределения, и некоторые описательные статистики. Отсортируйте факультеты в порядке убывания медианного балла за 3-ю неделю (функция, которую мы разбирали на слайде 21, по умолчанию сортирует именно по медиане, так что задавать медиану отдельным аргументом не нужно). Если используете `geom_jitter()`, постарайтесь, чтобы точки лежали кучнее вдоль оси, которая не отражает само распределение. Проинтерпретируйте график.
 
 ```{r task-3}
-   #| fig-width: 8
-   #| fig-height: 6
+#| fig-width: 8
+#| fig-height: 6
 
 house_colours <- c(
   "Гриффиндор" = "#B32025", "Пуффендуй" = "#D7A900",
@@ -161,8 +161,8 @@ hogwarts |>
 Постройте гистограмму результатов любого экзамена на ваш выбор, кроме зельеварения. Настройте оптимальное, на ваш взгляд, число столбцов гистограммы. Выполните фасетирование по курсу. Постарайтесь, чтобы график был по возможности компактным. Проинтерпретируйте график.
 
 ```{r task-4}
-   #| fig-width: 8
-   #| fig-height: 6
+#| fig-width: 8
+#| fig-height: 6
 
 hogwarts |> 
   select(`Muggle studies exam`, course) |>  
@@ -185,8 +185,8 @@ hogwarts |>
 Раскрасьте точки в разные цвета в соответствии с факультетами. Проинтерпретируйте полученный результат.
 
 ```{r task-5}
-   #| fig-width: 8
-   #| fig-height: 6
+#| fig-width: 8
+#| fig-height: 6
 
 sex_names <- c(
   `female` = "Женский", 
@@ -223,8 +223,8 @@ hogwarts |>
 Объедините графики так, чтобы итоговый график имел два столбца и две строки. Два графика должны стоять в верхней строке и занимать равную площадь. Третий график должен занимать нижнюю строку целиком. Проинтерпретируйте график.
 
 ```{r task-6}
-   #| fig-width: 10
-   #| fig-height: 6
+#| fig-width: 10
+#| fig-height: 6
 
 two_exam_colors <- c(
   "Защита от тёмных искусств" = "darkseagreen4", 
@@ -261,9 +261,9 @@ plot_3 <- ggplot(two_exams, aes(x = score, color = exam)) +
        y = "Доля студентов", color = "Экзамен") +
   guides(color = "none") +
   theme_minimal(base_size = 12) +
-  theme(plot.title = element_text(size = 13))
+  theme(plot.title = element_text(size = 12))
 
-(plot_1 | plot_3) / plot_2 + plot_annotation(title = "Распределение баллов за экзамен по прорицанию и защите от тёмных искусств", theme = theme(plot.title = element_text(size = 12))) + plot_layout(guides = "collect") 
+(plot_1 | plot_3) / plot_2 + plot_annotation(title = "Распределение баллов за экзамен по прорицанию и защите от тёмных искусств", theme = theme(plot.title = element_text(size = 15))) + plot_layout(guides = "collect") 
 ```
 
 **Интерпретация:**
@@ -277,8 +277,8 @@ plot_3 <- ggplot(two_exams, aes(x = score, color = exam)) +
 ### 1 способ 
 
 ```{r task-7-1}
-   #| fig-width: 8
-   #| fig-height: 6
+#| fig-width: 8
+#| fig-height: 6
 
 draft_plot <- hogwarts |> select("Study of ancient runes exam", "Charms exam") |> 
   ggplot(aes(x = `Study of ancient runes exam` , y = `Charms exam`))
@@ -291,8 +291,8 @@ draft_plot +
 
 ### 2 способ
 ```{r task-7-2}
-   #| fig-width: 8
-   #| fig-height: 6
+#| fig-width: 8
+#| fig-height: 6
 
 draft_plot + 
   geom_jitter(color = "burlywood4", width = 0.5, height = 0.5, alpha = 0.4, size = 1.5) +
@@ -303,8 +303,8 @@ draft_plot +
 ### 3 способ
 
 ```{r task-7-3}
-   #| fig-width: 8
-   #| fig-height: 8
+#| fig-width: 8
+#| fig-height: 8
 
 plot_1_1 <- draft_plot + 
   geom_point(alpha = 0.5, size = 2, color = "burlywood4") +
@@ -338,8 +338,8 @@ plot_1_1 + inset_element(plot_1_2, left = 0.65, bottom = 0.05, right = 1, top = 
 Линии студентов других факультетов покрасьте в нейтральный серый цвет и задайте его явно, а их толщину сделайте не больше трети стандартной. Проинтерпретируйте график.
 
 ```{r task-8}
-   #| fig-width: 15
-   #| fig-height: 6
+#| fig-width: 10
+#| fig-height: 6
 
 weeks_long <- hogwarts |>
   select(id, house, bloodStatus, starts_with("week_")) |> 
@@ -356,7 +356,7 @@ ggplot(first_30, aes(x = week, y = points, group = id)) +
   geom_line(aes(color = house), linewidth = 0.8) + 
   gghighlight(house == "Ravenclaw", use_group_by = FALSE, label_key = bloodStatus, unhighlighted_params = list(linewidth = 0.2, colour = "grey70"), label_params = list(size = 3, color = "red", max.overlaps = Inf)) +
   scale_colour_manual(values = c("Ravenclaw" = "#2E5EAA"))  +
-  labs(title = "Баллы первых 30 студентов по неделям", x = "Неделя", y = "Баллы", subtitle = "Синим выделены студенты Когтеврана,\nдля каждого подписано его происхождение") +
+  labs(title = "Баллы первых 30 студентов по неделям", x = "Неделя", y = "Баллы", subtitle = "Синим выделены студенты Когтеврана, для каждого подписано его происхождение") +
   scale_x_continuous(n.breaks = 10) +
   theme_minimal(base_size = 15)
 ```
@@ -401,8 +401,8 @@ ggplot(first_30, aes(x = week, y = points, group = id)) +
 2) Средний балл колеблется между 0.5 и 2 без устойчивого снижения, а выбранные недели попали на пики и провалы, поэтому оригинал создавал картину падения, которой нет на полных данных
 
 ```{r task-9}
-   #| fig-width: 10
-   #| fig-height: 6
+#| fig-width: 12
+#| fig-height: 6
 
 selected_weeks <- c(4, 14, 18, 25, 29, 36)
 
@@ -420,8 +420,8 @@ mean_scores |>
   geom_point(data = filter(mean_scores, week %in% selected_weeks), color = "darkseagreen4", size = 3) +
   geom_hline(yintercept = 0, linetype = "dashed") +
   scale_x_continuous(n.breaks = 10) +
-  labs(x = "Неделя", y = "Средний балл за неделю", title = "Средние баллы студентов за неделю", subtitle = "Зелёные точки: недели, показанные на исходном графике.\nПолоса: среднее ± стандартная ошибка") + 
-  theme_minimal(base_size = 14)
+  labs(x = "Неделя", y = "Средний балл за неделю", title = "Средние баллы студентов за неделю", subtitle = "Зелёные точки: недели, показанные на исходном графике. Полоса: среднее ± стандартная ошибка") + 
+  theme_minimal(base_size = 15)
 ```
 
 # Задание 10 (дополнительное)
@@ -433,8 +433,8 @@ mean_scores |>
 ![Образец к заданию 10](images/task_10.png)
 
 ```{r task-10}
-   #| fig-width: 10
-   #| fig-height: 6
+#| fig-width: 12
+#| fig-height: 6
    
 hogwarts_total <- hogwarts |>
   mutate(total = rowSums(across(starts_with("week_"))),
